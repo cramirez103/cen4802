@@ -27,9 +27,9 @@ public class Main {
 class FibonacciUtility {
 
     /**
-     * A recursive static method that returns the nth term in the Fibonacci sequence.
-     * * @param n The position in the sequence (0-indexed base cases)
-     * @return The nth Fibonacci number
+     * Calculates the nth term in the Fibonacci sequence using recursion.
+     * * @param n The position of the term in the Fibonacci sequence (0-indexed).
+     * @return The long value of the Fibonacci number at the specified position.
      */
     public static long getFibonacciTerm(int n) {
         // Base case: 0th term is 0, 1st term is 1
