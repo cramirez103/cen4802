@@ -8,16 +8,18 @@ package org.example;
 public class Main {
 
     public static void main(String[] args) {
-        // The assignment requires passing 10 into the Fibonacci method
         int inputNumber = 10;
 
-        // Calculate the result using the static method from our utility class
-        long result = FibonacciUtility.getFibonacciTerm(inputNumber);
+        System.out.println(">>> CI/CD PIPELINE UPGRADE: GENERATING SEQUENCE <<<");
+        System.out.print("Fibonacci sequence up to " + inputNumber + " terms: ");
 
-        // Output descriptive text along with the calculated result
-        System.out.println("The " + inputNumber + "th term of the Fibonacci sequence is " + result + ".");
+        // SIGNIFICANT CHANGE: Loop through and print the whole sequence dynamically
+        for (int i = 0; i <= inputNumber; i++) {
+            System.out.print(FibonacciUtility.getFibonacciTerm(i) + " ");
+        }
+        System.out.println("\n>>> Sequence Generation Complete <<<");
     }
-}
+} // Main class completely closed here to fix the language level '8' error
 
 /**
  * Utility class to hold mathematical operations.
@@ -28,18 +30,23 @@ class FibonacciUtility {
 
     /**
      * Calculates the nth term in the Fibonacci sequence using recursion.
-     * * @param n The position of the term in the Fibonacci sequence (0-indexed).
+     * @param n The position of the term in the Fibonacci sequence (0-indexed).
      * @return The long value of the Fibonacci number at the specified position.
      */
     public static long getFibonacciTerm(int n) {
-        // Base case: 0th term is 0, 1st term is 1
-        if (n <= 0) {
+        // SIGNIFICANT CHANGE: Explicit validation for negative bounds
+        if (n < 0) {
+            throw new IllegalArgumentException("Fibonacci position cannot be negative.");
+        }
+
+        // Base cases
+        if (n == 0) {
             return 0;
         } else if (n == 1) {
             return 1;
         }
 
-        // Recursive step: F(n) = F(n-1) + F(n-2)
+        // Recursive step
         return getFibonacciTerm(n - 1) + getFibonacciTerm(n - 2);
     }
 }
