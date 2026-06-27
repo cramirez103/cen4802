@@ -3,50 +3,63 @@ package org.example;
 /**
  * Main application class for the Software Configuration and Testing assignment.
  * This program demonstrates a professional, maintainable structure for a
- * recursive Fibonacci sequence generator.
+ * recursive Fibonacci sequence generator with an ASCII visualization engine.
  */
 public class Main {
 
     public static void main(String[] args) {
         int inputNumber = 10;
 
-        System.out.println(">>> CI/CD PIPELINE UPGRADE: GENERATING SEQUENCE <<<");
-        System.out.print("Fibonacci sequence up to " + inputNumber + " terms: ");
+        System.out.println("====================================================");
+        System.out.println(">>> DOCKER CONTAINERIZATION ARCHITECTURE SUCCESS <<<");
+        System.out.println("====================================================");
+        System.out.println("Visualizing Fibonacci Sequence growth up to term " + inputNumber + ":\n");
 
-        // SIGNIFICANT CHANGE: Loop through and print the whole sequence dynamically
+        // Loop through and build the visual growth bar charts
         for (int i = 0; i <= inputNumber; i++) {
-            System.out.print(FibonacciUtility.getFibonacciTerm(i) + " ");
-        }
-        System.out.println("\n>>> Sequence Generation Complete <<<");
-    }
-} // Main class completely closed here to fix the language level '8' error
+            long termValue = FibonacciUtility.getFibonacciTerm(i);
 
-/**
- * Utility class to hold mathematical operations.
- * Separating logic from the Main class ensures the project is organized
- * appropriately for future unit testing and development.
- */
-class FibonacciUtility {
+            // FIXED: Using StringBuilder instead of loop string concatenation '+='
+            StringBuilder visualBar = new StringBuilder();
+            for (int j = 0; j < termValue; j++) {
+                visualBar.append("■");
+            }
+
+            // Print formatted index, absolute value, and the visual bar graph
+            System.out.printf("Term F(%2d) = %2d | %s\n", i, termValue, visualBar.toString());
+        }
+
+        System.out.println("\n====================================================");
+        System.out.println(">>> Execution Completed Inside Isolated Container <<<");
+        System.out.println("====================================================");
+    }
 
     /**
-     * Calculates the nth term in the Fibonacci sequence using recursion.
-     * @param n The position of the term in the Fibonacci sequence (0-indexed).
-     * @return The long value of the Fibonacci number at the specified position.
+     * FIXED: Moved inside Main as a 'static' inner class.
+     * Separating logic ensures the project is organized appropriately.
      */
-    public static long getFibonacciTerm(int n) {
-        // SIGNIFICANT CHANGE: Explicit validation for negative bounds
-        if (n < 0) {
-            throw new IllegalArgumentException("Fibonacci position cannot be negative.");
-        }
+    public static class FibonacciUtility {
 
-        // Base cases
-        if (n == 0) {
-            return 0;
-        } else if (n == 1) {
-            return 1;
-        }
+        /**
+         * Calculates the nth term in the Fibonacci sequence using recursion.
+         * @param n The position of the term in the Fibonacci sequence (0-indexed).
+         * @return The long value of the Fibonacci number at the specified position.
+         */
+        public static long getFibonacciTerm(int n) {
+            // Explicit validation for negative bounds
+            if (n < 0) {
+                throw new IllegalArgumentException("Fibonacci position cannot be negative.");
+            }
 
-        // Recursive step
-        return getFibonacciTerm(n - 1) + getFibonacciTerm(n - 2);
+            // Base cases
+            if (n == 0) {
+                return 0;
+            } else if (n == 1) {
+                return 1;
+            }
+
+            // Recursive step
+            return getFibonacciTerm(n - 1) + getFibonacciTerm(n - 2);
+        }
     }
 }
